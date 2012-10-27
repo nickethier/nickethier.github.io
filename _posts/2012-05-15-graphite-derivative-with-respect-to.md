@@ -22,17 +22,17 @@ Since I'm sampling every two seconds and theres 100 jiffies in a second on my sy
 
 ![cpu derivative long](/assets/images/graphite-tip-derivative-with-respect-to/cpu-derivative-long.png)
 
-But the shape is generally correct, I just need to find out a way to show the relationship against the sum of the differences instead of time. 
+But the shape is generally correct, I just need to find out a way to show the relationship against the sum of the differences instead of time.
 
 I'm currently graphing ```dv/dt``` which is the change in value over the change in time. What I want is ```dv/da``` or the change in value over the change of all values. I can also find the change in all values with respect to time, or ```da/dt```. If I then divide those two series I can cancel out ```dt```. Graphite can do all of that!
 
 So first I need to sum all the ```dv/dt``` values to get ```da/dt```.
 
-	sumSeries(derivative(<host>.cpu.0.*))  ---> da/dt
+    sumSeries(derivative(<host>.cpu.0.*))  ---> da/dt
 
 Now divide that by the ```dv/dt``` I want. I'll go ahead and plot them all like before.
 
-	divideSeries(derivative(<host>.cpu.0.*),sumSeries(derivative(<host>.cpu.0.*)))  ---> dv/da
+    divideSeries(derivative(<host>.cpu.0.*),sumSeries(derivative(<host>.cpu.0.*)))  ---> dv/da
 
 This will give me values between 0 and 1. You can scale this by 100 if you want.
 
@@ -42,7 +42,7 @@ This is the result I got:
 
 And without the idle (blue), I'll use the exclude() function in graphite:
 
-	divideSeries(derivative(exclude(<host>.cpu.0.*, "idle")),sumSeries(derivative(<host>.cpu.0.*)))
+    divideSeries(derivative(exclude(<host>.cpu.0.*, "idle")),sumSeries(derivative(<host>.cpu.0.*)))
 
 ![cpu derivative long without idle](/assets/images/graphite-tip-derivative-with-respect-to/cpu-derivative-long-noidle.png)
 
