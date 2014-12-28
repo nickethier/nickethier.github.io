@@ -1,0 +1,12 @@
+<div class="header">
+  <nav>
+    <ul class="nav nav-pills pull-right">
+      {% for page in site.pages %}
+        {% if page.title %}
+        <li role="presentation"><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </nav>
+  <a href="{{ site.baseurl }}/"><h3 class="text-muted">{{ site.title }}</h3></a>
+</div>
