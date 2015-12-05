@@ -4,7 +4,7 @@ email: nick@nickethier.org
 description: > # this means to ignore newlines until "baseurl:"
   Infrastructure coder by day, network hacker by night.
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "https://nickethier.github.io" # the base hostname & protocol for your site
+url: "https://nickethier.org" # the base hostname & protocol for your site
 twitter_username: nickethier
 github_username:  nickethier
 
