@@ -8,6 +8,11 @@ url: "https://nickethier.org" # the base hostname & protocol for your site
 twitter_username: nickethier
 github_username:  nickethier
 
+analytics :
+  provider : google
+  google : 
+      tracking_id : 'UA-71579745-1'
+
 # Build settings
 markdown: kramdown
 
